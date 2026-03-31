@@ -1,0 +1,152 @@
+﻿<svg width="100%" viewBox="0 0 830 740" xmlns="http://www.w3.org/2000/svg" style="max-width:780px;margin:0 auto;display:block;">
+        <defs>
+          <marker id="arw" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0.5 L6,3.5 L0,6.5" fill="#9ca3af"/></marker>
+          <marker id="arwB" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0.5 L6,3.5 L0,6.5" fill="#818cf8"/></marker>
+        </defs>
+
+        <!-- ========== 编码器 (cx=215) ========== -->
+        <text x="215" y="718" text-anchor="middle" fill="#e5e7eb" font-size="13" font-weight="600">源序列</text>
+        <line x1="215" y1="703" x2="215" y2="688" stroke="#9ca3af" stroke-width="1.2" marker-end="url(#arw)"/>
+        <!-- 嵌入/映射 -->
+        <rect x="140" y="653" width="150" height="32" rx="6" fill="rgba(255,255,255,0.06)" stroke="#6b7280" stroke-width="1"/>
+        <text x="215" y="673" text-anchor="middle" fill="#e5e7eb" font-size="11">嵌入 / 映射</text>
+        <line x1="215" y1="653" x2="215" y2="640" stroke="#9ca3af" stroke-width="1.2" marker-end="url(#arw)"/>
+        <!-- 位置编码 + ⊕ -->
+        <text x="150" y="619" text-anchor="middle" fill="#9ca3af" font-size="8">位置编码</text>
+        <circle cx="150" cy="630" r="8" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+        <path d="M148,627 Q150,631 152,627" fill="none" stroke="#9ca3af" stroke-width="0.7"/>
+        <line x1="159" y1="630" x2="199" y2="630" stroke="#9ca3af" stroke-width="0.8"/>
+        <circle cx="215" cy="630" r="10" fill="rgba(0,0,0,0.4)" stroke="#9ca3af" stroke-width="1"/>
+        <text x="215" y="635" text-anchor="middle" fill="#e5e7eb" font-size="13">+</text>
+        <line x1="215" y1="618" x2="215" y2="600" stroke="#9ca3af" stroke-width="1.2" marker-end="url(#arw)"/>
+
+        <!-- 编码器 Nx 框 (amber) -->
+        <rect x="102" y="368" width="226" height="230" rx="10" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="8,4"/>
+        <text x="92" y="478" text-anchor="end" fill="#9ca3af" font-size="11" font-style="italic">Nx</text>
+        <text x="92" y="494" text-anchor="end" fill="#9ca3af" font-size="11" font-style="italic">"层"</text>
+
+        <!-- 归一化 1 -->
+        <rect x="153" y="574" width="124" height="22" rx="4" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="1"/>
+        <text x="215" y="589" text-anchor="middle" fill="#10b981" font-size="10">归一化</text>
+        <line x1="215" y1="574" x2="215" y2="568" stroke="#9ca3af" stroke-width="1"/>
+        <!-- 多头自注意力 (蓝色) -->
+        <rect x="125" y="524" width="180" height="42" rx="6" fill="rgba(99,102,241,0.2)" stroke="#818cf8" stroke-width="1.2"/>
+        <text x="215" y="543" text-anchor="middle" fill="#818cf8" font-size="11" font-weight="600">多头自注意力</text>
+        <text x="185" y="558" text-anchor="middle" fill="rgba(129,140,248,0.6)" font-size="9">V</text>
+        <text x="215" y="558" text-anchor="middle" fill="rgba(129,140,248,0.6)" font-size="9">K</text>
+        <text x="245" y="558" text-anchor="middle" fill="rgba(129,140,248,0.6)" font-size="9">Q</text>
+        <line x1="215" y1="524" x2="215" y2="514" stroke="#9ca3af" stroke-width="1"/>
+        <!-- ⊕ + 残差 -->
+        <circle cx="215" cy="504" r="10" fill="rgba(0,0,0,0.4)" stroke="#9ca3af" stroke-width="1"/>
+        <text x="215" y="509" text-anchor="middle" fill="#e5e7eb" font-size="13">+</text>
+        <path d="M 215 598 L 112 598 L 112 504 L 204 504" fill="none" stroke="#9ca3af" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="215" y1="492" x2="215" y2="476" stroke="#9ca3af" stroke-width="1.2" marker-end="url(#arw)"/>
+
+        <!-- 归一化 2 -->
+        <rect x="153" y="452" width="124" height="22" rx="4" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="1"/>
+        <text x="215" y="467" text-anchor="middle" fill="#10b981" font-size="10">归一化</text>
+        <line x1="215" y1="452" x2="215" y2="446" stroke="#9ca3af" stroke-width="1"/>
+        <!-- 前馈神经网络 (黄色) -->
+        <rect x="125" y="402" width="180" height="42" rx="6" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="1.2"/>
+        <text x="215" y="427" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="600">前馈神经网络</text>
+        <line x1="215" y1="402" x2="215" y2="392" stroke="#9ca3af" stroke-width="1"/>
+        <!-- ⊕ + 残差 -->
+        <circle cx="215" cy="382" r="10" fill="rgba(0,0,0,0.4)" stroke="#9ca3af" stroke-width="1"/>
+        <text x="215" y="387" text-anchor="middle" fill="#e5e7eb" font-size="13">+</text>
+        <path d="M 215 492 L 112 492 L 112 382 L 204 382" fill="none" stroke="#9ca3af" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="215" y1="370" x2="215" y2="358" stroke="#9ca3af" stroke-width="1.2" marker-end="url(#arw)"/>
+
+        <!-- 编码器顶部归一化 -->
+        <rect x="153" y="333" width="124" height="22" rx="4" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="1"/>
+        <text x="215" y="348" text-anchor="middle" fill="#10b981" font-size="10">归一化</text>
+
+        <!-- ========== 解码器 (cx=590) ========== -->
+        <text x="590" y="718" text-anchor="middle" fill="#e5e7eb" font-size="13" font-weight="600">目标序列（偏移）</text>
+        <line x1="590" y1="703" x2="590" y2="688" stroke="#9ca3af" stroke-width="1.2" marker-end="url(#arw)"/>
+        <!-- 嵌入/映射 -->
+        <rect x="515" y="653" width="150" height="32" rx="6" fill="rgba(255,255,255,0.06)" stroke="#6b7280" stroke-width="1"/>
+        <text x="590" y="673" text-anchor="middle" fill="#e5e7eb" font-size="11">嵌入 / 映射</text>
+        <line x1="590" y1="653" x2="590" y2="640" stroke="#9ca3af" stroke-width="1.2" marker-end="url(#arw)"/>
+        <!-- 位置编码 + ⊕ -->
+        <text x="635" y="619" text-anchor="middle" fill="#9ca3af" font-size="8">位置编码</text>
+        <circle cx="635" cy="630" r="8" fill="none" stroke="#9ca3af" stroke-width="0.8"/>
+        <path d="M633,627 Q635,631 637,627" fill="none" stroke="#9ca3af" stroke-width="0.7"/>
+        <line x1="626" y1="630" x2="601" y2="630" stroke="#9ca3af" stroke-width="0.8"/>
+        <circle cx="590" cy="630" r="10" fill="rgba(0,0,0,0.4)" stroke="#9ca3af" stroke-width="1"/>
+        <text x="590" y="635" text-anchor="middle" fill="#e5e7eb" font-size="13">+</text>
+        <line x1="590" y1="618" x2="590" y2="600" stroke="#9ca3af" stroke-width="1.2" marker-end="url(#arw)"/>
+
+        <!-- 解码器 Nx 框 (green) -->
+        <rect x="478" y="248" width="226" height="350" rx="10" fill="none" stroke="#10b981" stroke-width="1.5" stroke-dasharray="8,4"/>
+        <text x="714" y="420" text-anchor="start" fill="#9ca3af" font-size="11" font-style="italic">Nx</text>
+        <text x="714" y="436" text-anchor="start" fill="#9ca3af" font-size="11" font-style="italic">"层"</text>
+
+        <!-- 归一化 d1 -->
+        <rect x="528" y="574" width="124" height="22" rx="4" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="1"/>
+        <text x="590" y="589" text-anchor="middle" fill="#10b981" font-size="10">归一化</text>
+        <line x1="590" y1="574" x2="590" y2="568" stroke="#9ca3af" stroke-width="1"/>
+        <!-- 掩码多头自注意力 (粉色) -->
+        <rect x="500" y="524" width="180" height="42" rx="6" fill="rgba(249,115,22,0.14)" stroke="#fb923c" stroke-width="1.2"/>
+        <text x="590" y="540" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="600">掩码</text>
+        <text x="590" y="554" text-anchor="middle" fill="#fb923c" font-size="10" font-weight="600">多头自注意力</text>
+        <text x="560" y="520" text-anchor="middle" fill="rgba(248,113,113,0.5)" font-size="8">V</text>
+        <text x="590" y="520" text-anchor="middle" fill="rgba(248,113,113,0.5)" font-size="8">K</text>
+        <text x="620" y="520" text-anchor="middle" fill="rgba(248,113,113,0.5)" font-size="8">Q</text>
+        <line x1="590" y1="524" x2="590" y2="514" stroke="#9ca3af" stroke-width="1"/>
+        <circle cx="590" cy="504" r="10" fill="rgba(0,0,0,0.4)" stroke="#9ca3af" stroke-width="1"/>
+        <text x="590" y="509" text-anchor="middle" fill="#e5e7eb" font-size="13">+</text>
+        <path d="M 590 598 L 694 598 L 694 504 L 601 504" fill="none" stroke="#9ca3af" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="590" y1="492" x2="590" y2="476" stroke="#9ca3af" stroke-width="1.2" marker-end="url(#arw)"/>
+
+        <!-- 归一化 d2 -->
+        <rect x="528" y="452" width="124" height="22" rx="4" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="1"/>
+        <text x="590" y="467" text-anchor="middle" fill="#10b981" font-size="10">归一化</text>
+        <line x1="590" y1="452" x2="590" y2="446" stroke="#9ca3af" stroke-width="1"/>
+        <!-- 多头交叉注意力 (蓝色) -->
+        <rect x="500" y="402" width="180" height="42" rx="6" fill="rgba(99,102,241,0.2)" stroke="#818cf8" stroke-width="1.2"/>
+        <text x="590" y="420" text-anchor="middle" fill="#818cf8" font-size="10" font-weight="600">多头交叉注意力</text>
+        <text x="590" y="434" text-anchor="middle" fill="rgba(129,140,248,0.5)" font-size="8">(Cross-Attention)</text>
+        <text x="560" y="398" text-anchor="middle" fill="rgba(129,140,248,0.5)" font-size="8">V</text>
+        <text x="590" y="398" text-anchor="middle" fill="rgba(129,140,248,0.5)" font-size="8">K</text>
+        <text x="620" y="398" text-anchor="middle" fill="rgba(129,140,248,0.5)" font-size="8">Q</text>
+        <line x1="590" y1="402" x2="590" y2="392" stroke="#9ca3af" stroke-width="1"/>
+        <circle cx="590" cy="382" r="10" fill="rgba(0,0,0,0.4)" stroke="#9ca3af" stroke-width="1"/>
+        <text x="590" y="387" text-anchor="middle" fill="#e5e7eb" font-size="13">+</text>
+        <path d="M 590 492 L 694 492 L 694 382 L 601 382" fill="none" stroke="#9ca3af" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="590" y1="370" x2="590" y2="356" stroke="#9ca3af" stroke-width="1.2" marker-end="url(#arw)"/>
+
+        <!-- 归一化 d3 -->
+        <rect x="528" y="332" width="124" height="22" rx="4" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="1"/>
+        <text x="590" y="347" text-anchor="middle" fill="#10b981" font-size="10">归一化</text>
+        <line x1="590" y1="332" x2="590" y2="326" stroke="#9ca3af" stroke-width="1"/>
+        <!-- 前馈神经网络 (黄色) -->
+        <rect x="500" y="282" width="180" height="42" rx="6" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="1.2"/>
+        <text x="590" y="307" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="600">前馈神经网络</text>
+        <line x1="590" y1="282" x2="590" y2="272" stroke="#9ca3af" stroke-width="1"/>
+        <circle cx="590" cy="262" r="10" fill="rgba(0,0,0,0.4)" stroke="#9ca3af" stroke-width="1"/>
+        <text x="590" y="267" text-anchor="middle" fill="#e5e7eb" font-size="13">+</text>
+        <path d="M 590 370 L 694 370 L 694 262 L 601 262" fill="none" stroke="#9ca3af" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="590" y1="250" x2="590" y2="238" stroke="#9ca3af" stroke-width="1.2" marker-end="url(#arw)"/>
+
+        <!-- 解码器顶部归一化 -->
+        <rect x="528" y="213" width="124" height="22" rx="4" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="1"/>
+        <text x="590" y="228" text-anchor="middle" fill="#10b981" font-size="10">归一化</text>
+        <line x1="590" y1="213" x2="590" y2="198" stroke="#9ca3af" stroke-width="1.2" marker-end="url(#arw)"/>
+        <!-- ⊕ -->
+        <circle cx="590" cy="187" r="10" fill="rgba(0,0,0,0.4)" stroke="#9ca3af" stroke-width="1"/>
+        <text x="590" y="192" text-anchor="middle" fill="#e5e7eb" font-size="13">+</text>
+        <line x1="590" y1="175" x2="590" y2="162" stroke="#9ca3af" stroke-width="1.2" marker-end="url(#arw)"/>
+        <!-- 线性层 -->
+        <rect x="528" y="138" width="124" height="22" rx="5" fill="rgba(255,255,255,0.06)" stroke="#6b7280" stroke-width="1"/>
+        <text x="590" y="153" text-anchor="middle" fill="#e5e7eb" font-size="11">线性层</text>
+        <line x1="590" y1="138" x2="590" y2="125" stroke="#9ca3af" stroke-width="1.2" marker-end="url(#arw)"/>
+        <!-- 最终归一化 -->
+        <rect x="528" y="101" width="124" height="22" rx="4" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="1"/>
+        <text x="590" y="116" text-anchor="middle" fill="#10b981" font-size="10">归一化</text>
+        <line x1="590" y1="101" x2="590" y2="88" stroke="#9ca3af" stroke-width="1.2" marker-end="url(#arw)"/>
+        <!-- 预测输出 -->
+        <text x="590" y="78" text-anchor="middle" fill="#e5e7eb" font-size="13" font-weight="600">预测输出</text>
+
+        <!-- ====== 编码器 → 解码器 交叉连接 ====== -->
+        <path d="M 277 344 L 400 344 L 400 421 L 498 421" fill="none" stroke="#818cf8" stroke-width="1.5" marker-end="url(#arwB)"/>
+      </svg>
