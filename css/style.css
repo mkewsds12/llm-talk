@@ -263,6 +263,16 @@ body > * { position: relative; z-index: 1; }
 /* ===== Ending ===== */
 .ending-text { font-size: 3rem; font-weight: 700; text-align: center; margin-bottom: 1rem; }
 .ending-sub { font-size: 1.1rem; text-align: center; color: var(--text-dim); }
+.site-license {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.78rem;
+  line-height: 1.8;
+  color: rgba(202, 212, 232, 0.82);
+  text-align: center;
+}
+.site-license strong { color: #e5e7eb; font-weight: 700; }
 
 /* ===== Code Demo ===== */
 .code-demo { background: #0d1117; border: 1px solid rgba(99,102,241,0.2); border-radius: 12px; overflow: hidden; margin: 2rem 0; font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace; }
@@ -300,4 +310,5 @@ body > * { position: relative; z-index: 1; }
   .cards-grid.force-3 { grid-template-columns: repeat(3, 1fr) !important; gap: 0.8rem; }
   .cards-grid.force-3 .card { padding: 1rem; }
   .nav-dots { right: 12px; }
+  .site-license { font-size: 0.72rem; }
 }
