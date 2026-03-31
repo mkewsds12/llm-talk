@@ -2,6 +2,12 @@
 const sections = document.querySelectorAll('.section');
 const navDotsContainer = document.getElementById('navDots');
 const progressBar = document.getElementById('progressBar');
+const coverDate = document.getElementById('coverDate');
+
+if (coverDate) {
+  const now = new Date();
+  coverDate.textContent = `${now.getFullYear()} 年 ${now.getMonth() + 1} 月`;
+}
 
 sections.forEach((s, i) => {
   const dot = document.createElement('button');
