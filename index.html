@@ -332,7 +332,7 @@
 <section class="section" id="s1-compare">
   <div class="section-inner">
     <div class="section-title fade-in">中美大模型一览</div>
-    <div class="section-subtitle fade-in">截至 2026 年 3 月的主要大模型</div>
+    <div class="section-subtitle fade-in">截至 2026 年 4 月的主要大模型（以官方文档/定价页为准）</div>
     <div style="overflow-x: auto;">
       <table class="compare-table fade-in">
         <thead>
@@ -340,21 +340,21 @@
         </thead>
         <tbody>
           <tr class="table-group-header"><td colspan="5">🇺🇸 美国</td></tr>
-          <tr><td><a href="https://openai.com" target="_blank" rel="noopener">GPT-5.4</a></td><td>OpenAI</td><td>2026.3</td><td>最新旗舰，多模态</td><td><span class="badge-closed">闭源</span></td></tr>
-          <tr><td><a href="https://www.anthropic.com" target="_blank" rel="noopener">Claude Opus 4.6</a></td><td>Anthropic</td><td>2025</td><td>长上下文，安全对齐</td><td><span class="badge-closed">闭源</span></td></tr>
-          <tr><td><a href="https://deepmind.google/technologies/gemini/" target="_blank" rel="noopener">Gemini 2.5 Pro</a></td><td>Google</td><td>2025</td><td>原生多模态</td><td><span class="badge-closed">闭源</span></td></tr>
-          <tr><td><a href="https://llama.meta.com" target="_blank" rel="noopener">Llama 4 Maverick</a></td><td>Meta</td><td>2025</td><td>MoE架构，400B参数</td><td><span class="badge-open">开源</span></td></tr>
+          <tr><td><a href="https://developers.openai.com/api/docs/models" target="_blank" rel="noopener">GPT-5.4 / 5.4-mini / 5.4-nano</a></td><td>OpenAI</td><td>2026</td><td>旗舰到轻量全覆盖，支持工具与Agent场景</td><td><span class="badge-closed">闭源</span></td></tr>
+          <tr><td><a href="https://platform.claude.com/docs/en/docs/about-claude/models/overview" target="_blank" rel="noopener">Claude Opus 4.7 / Sonnet 4.6 / Haiku 4.5</a></td><td>Anthropic</td><td>2026</td><td>1M 上下文（Opus/Sonnet），代码与推理强</td><td><span class="badge-closed">闭源</span></td></tr>
+          <tr><td><a href="https://ai.google.dev/gemini-api/docs/pricing" target="_blank" rel="noopener">Gemini 3.x / 2.5 系列</a></td><td>Google</td><td>2026</td><td>多模态全栈（文本/图像/语音/视频）</td><td><span class="badge-closed">闭源</span></td></tr>
+          <tr><td><a href="https://huggingface.co/meta-llama" target="_blank" rel="noopener">Llama 4 Scout / Maverick</a></td><td>Meta</td><td>2025-2026</td><td>原生多模态，开放权重生态活跃</td><td><span class="badge-open">开源</span></td></tr>
           <tr class="table-group-header"><td colspan="5">🇨🇳 中国</td></tr>
-          <tr><td><a href="https://www.deepseek.com" target="_blank" rel="noopener">DeepSeek-V3.2</a></td><td>深度求索</td><td>2026</td><td>MoE 685B，Agent增强</td><td><span class="badge-open">开源</span></td></tr>
-          <tr><td><a href="https://tongyi.aliyun.com" target="_blank" rel="noopener">Qwen-3</a></td><td>阿里云</td><td>2025</td><td>多尺寸版本丰富</td><td><span class="badge-open">开源</span></td></tr>
-          <tr><td><a href="https://www.zhipuai.cn" target="_blank" rel="noopener">GLM-5</a></td><td>智谱AI</td><td>2025</td><td>中文优化，工具调用强</td><td><span class="badge-closed">闭源</span></td></tr>
-          <tr><td><a href="https://kimi.moonshot.cn" target="_blank" rel="noopener">Kimi</a></td><td>Moonshot</td><td>2025</td><td>超长上下文（200万token）</td><td><span class="badge-closed">闭源</span></td></tr>
+          <tr><td><a href="https://api-docs.deepseek.com/quick_start/pricing" target="_blank" rel="noopener">DeepSeek V4 Pro / V4 Flash</a></td><td>深度求索</td><td>2026.04</td><td>1M 上下文，推理与编码性价比突出</td><td><span class="badge-open">开源/开放生态</span></td></tr>
+          <tr><td><a href="https://qwen.ai/research" target="_blank" rel="noopener">Qwen3.6 系列（Plus/Max/27B/35B）</a></td><td>阿里云·通义千问</td><td>2026.04</td><td>面向 Agent 编程强化，多模态持续迭代</td><td><span class="badge-open">开源+闭源并行</span></td></tr>
+          <tr><td><a href="https://www.zhipuai.cn" target="_blank" rel="noopener">GLM 系列（持续更新）</a></td><td>智谱AI</td><td>2025-2026</td><td>中文任务与企业 API 场景稳定</td><td><span class="badge-closed">闭源为主</span></td></tr>
+          <tr><td><a href="https://kimi.moonshot.cn" target="_blank" rel="noopener">Kimi 系列（持续更新）</a></td><td>Moonshot</td><td>2025-2026</td><td>长文本处理与检索问答体验好</td><td><span class="badge-closed">闭源</span></td></tr>
         </tbody>
       </table>
     </div>
     <div class="concept-box fade-in" style="margin-top: 1.5rem;">
       <h4>趋势观察</h4>
-      <p>中国在开源大模型方面非常活跃（DeepSeek、Qwen），训练成本控制也有优势。美国在闭源商业模型和基础能力上仍然领先。两边都在往Agent方向发力。</p>
+      <p>最新一轮竞争聚焦在三点：<strong style="color:var(--primary);">更长上下文（1M 级）</strong>、<strong style="color:var(--accent);">更强 Agent 工具调用</strong>、<strong style="color:var(--accent2);">更低单位 Token 成本</strong>。美国厂商在闭源旗舰能力上持续领先，中国厂商在开源生态和成本效率上推进很快。</p>
     </div>
   </div>
 </section>
@@ -503,7 +503,7 @@
       <a class="card resource-card fade-in" href="https://claude.ai/" target="_blank" rel="noopener">
         <div class="card-icon"><img src="assets/icons/claude-ai.png" alt="Claude"></div>
         <div class="card-title">Claude</div>
-        <div class="card-desc">Anthropic 出品，长文本和代码能力强，风格更"人性化"，价格天花板。</div>
+        <div class="card-desc">Anthropic 出品，长文本和代码能力强，风格更"人性化"，API 定价通常高于轻量模型。</div>
         <div class="card-link">打开 Claude →</div>
       </a>
       <a class="card resource-card fade-in" href="https://gemini.google.com/" target="_blank" rel="noopener">
@@ -597,7 +597,7 @@
       <a class="card resource-card fade-in" href="https://platform.deepseek.com/" target="_blank" rel="noopener">
         <div class="card-icon"><img src="assets/icons/deepseek-com.png" alt="DeepSeek"></div>
         <div class="card-title">DeepSeek API</div>
-        <div class="card-desc">国产性价比之王，API 价格全网最低。兼容 OpenAI 格式，迁移零成本。</div>
+        <div class="card-desc">国产高性价比选项之一，兼容 OpenAI 格式，迁移成本低。</div>
         <div class="card-link">打开 DeepSeek →</div>
       </a>
       <a class="card resource-card fade-in" href="https://docs.bigmodel.cn/" target="_blank" rel="noopener">
@@ -627,7 +627,7 @@
       <a class="card resource-card fade-in" href="https://siliconflow.cn/" target="_blank" rel="noopener">
         <div class="card-icon"><img src="assets/icons/siliconflow-cn.png" alt="硅基流动"></div>
         <div class="card-title">硅基流动</div>
-        <div class="card-desc">国产推理云平台，一个接口调 DeepSeek/Qwen/GLM 等主流开源模型。速度快价格低。</div>
+        <div class="card-desc">国产推理云平台，一个接口调 DeepSeek/Qwen/GLM 等主流开源模型，适合做成本与性能对比。</div>
         <div class="card-link">打开硅基流动 →</div>
       </a>
       <a class="card resource-card fade-in" href="https://python.langchain.com/" target="_blank" rel="noopener">
@@ -902,48 +902,49 @@
     <div class="section-subtitle fade-in">科技是双刃剑，成本是绕不开的话题</div>
 
     <div class="concept-box fade-in">
-      <h4>好用的大模型，贵不贵？答案是：非常贵</h4>
-      <p>这是最现实的问题。以下是目前主流模型的<strong style="color:#c4b5fd;">实际使用成本</strong>（按日常工作强度估算）：</p>
+      <h4>模型价格更新：看单价，比“月费估算”更靠谱</h4>
+      <p>下面是按 <strong style="color:#c4b5fd;">API 每 1M Token（输入/输出）</strong> 的公开价格做的横向对比（截至 2026-04，价格随官方公告可能变动）：</p>
     </div>
     <div style="margin: 1.5rem 0;" class="fade-in">
       <div class="cost-bar">
-        <div class="cost-label">ChatGPT Pro</div>
-        <div class="cost-track"><div class="cost-fill" style="width: 85%; background: linear-gradient(90deg, #6366f1, #818cf8);">&nbsp;</div></div>
-        <div class="cost-value">¥1800-5000/月</div>
+        <div class="cost-label">OpenAI GPT-5.4</div>
+        <div class="cost-track"><div class="cost-fill" style="width: 78%; background: linear-gradient(90deg, #6366f1, #818cf8);">&nbsp;</div></div>
+        <div class="cost-value">$2.50 / $15（输入/输出）</div>
       </div>
       <div class="cost-bar">
-        <div class="cost-label">Claude Opus Pro</div>
-        <div class="cost-track"><div class="cost-fill" style="width: 85%; background: linear-gradient(90deg, #6366f1, #818cf8);">&nbsp;</div></div>
-        <div class="cost-value">¥1800-5000/月</div>
+        <div class="cost-label">Claude Opus 4.7</div>
+        <div class="cost-track"><div class="cost-fill" style="width: 88%; background: linear-gradient(90deg, #6366f1, #818cf8);">&nbsp;</div></div>
+        <div class="cost-value">$5 / $25（输入/输出）</div>
       </div>
       <div class="cost-bar">
-        <div class="cost-label">Gemini Advanced</div>
-        <div class="cost-track"><div class="cost-fill" style="width: 80%; background: linear-gradient(90deg, #6366f1, #818cf8);">&nbsp;</div></div>
-        <div class="cost-value">¥1800-4500/月</div>
+        <div class="cost-label">Gemini 2.5 Pro</div>
+        <div class="cost-track"><div class="cost-fill" style="width: 68%; background: linear-gradient(90deg, #6366f1, #818cf8);">&nbsp;</div></div>
+        <div class="cost-value">$1.25 / $10（≤200K 提示）</div>
       </div>
       <div class="cost-bar">
-        <div class="cost-label">GPT-5 API 调用</div>
-        <div class="cost-track"><div class="cost-fill" style="width: 95%; background: linear-gradient(90deg, #6366f1, #818cf8);">&nbsp;</div></div>
-        <div class="cost-value">¥3000-8000/月</div>
+        <div class="cost-label">DeepSeek V4 Pro</div>
+        <div class="cost-track"><div class="cost-fill" style="width: 26%; background: linear-gradient(90deg, #6366f1, #818cf8);">&nbsp;</div></div>
+        <div class="cost-value">$1.74 / $3.48（输入/输出）</div>
       </div>
       <div class="cost-bar">
-        <div class="cost-label">Claude API (企业)</div>
-        <div class="cost-track"><div class="cost-fill" style="width: 90%; background: linear-gradient(90deg, #6366f1, #818cf8);">&nbsp;</div></div>
-        <div class="cost-value">¥2000-6000/月</div>
+        <div class="cost-label">DeepSeek V4 Flash</div>
+        <div class="cost-track"><div class="cost-fill" style="width: 12%; background: linear-gradient(90deg, #6366f1, #818cf8);">&nbsp;</div></div>
+        <div class="cost-value">$0.14 / $0.28（输入/输出）</div>
       </div>
       <div class="cost-bar">
-        <div class="cost-label">DeepSeek (API)</div>
-        <div class="cost-track"><div class="cost-fill" style="width: 25%; background: linear-gradient(90deg, #6366f1, #818cf8);">&nbsp;</div></div>
-        <div class="cost-value">约 ¥200-800/月</div>
+        <div class="cost-label">Claude Sonnet 4.6</div>
+        <div class="cost-track"><div class="cost-fill" style="width: 52%; background: linear-gradient(90deg, #6366f1, #818cf8);">&nbsp;</div></div>
+        <div class="cost-value">$3 / $15（输入/输出）</div>
       </div>
       <div class="cost-bar">
-        <div class="cost-label">智谱/通义 (API)</div>
-        <div class="cost-track"><div class="cost-fill" style="width: 30%; background: linear-gradient(90deg, #6366f1, #818cf8);">&nbsp;</div></div>
-        <div class="cost-value">约 ¥300-1000/月</div>
+        <div class="cost-label">Gemini 2.5 Flash-Lite</div>
+        <div class="cost-track"><div class="cost-fill" style="width: 10%; background: linear-gradient(90deg, #6366f1, #818cf8);">&nbsp;</div></div>
+        <div class="cost-value">$0.10 / $0.40（输入/输出）</div>
       </div>
     </div>
     <div class="quote-block fade-in">
-      以上为<strong style="color:var(--text);">单人</strong>使用成本。如果团队 10 人使用，月费用轻松突破 <strong style="color:#c4b5fd;">¥10,000 - 50,000</strong>。这还不含私有化部署、GPU服务器等硬件成本。
+      真实成本 = Token 单价 × 实际 Token 用量 + 工具调用费用（如 Web Search）+ 工程开销。<br>
+      建议先做 1-2 周用量采样，再决定是走<strong style="color:var(--text);">高性能模型</strong>还是<strong style="color:#c4b5fd;">高性价比模型</strong>。
     </div>
 
     <div class="cards-grid force-3" style="margin-top: 2rem;">
@@ -955,12 +956,12 @@
       <div class="card fade-in" style="text-align:center;">
         <div class="card-icon">🌱</div>
         <div class="card-title">务实建议</div>
-        <div class="card-desc">先从免费额度开始体验（有限制）。<br>API按量付费，日常使用月成本数百到数千元不等。<br>企业级应用需要专项预算支持。</div>
+        <div class="card-desc">先从免费额度和低价模型开始压测。<br>把“提示词长度、工具调用次数、重试率”纳入成本治理。<br>业务稳定后再切换更强模型。</div>
       </div>
       <div class="card fade-in" style="text-align:center;">
         <div class="card-icon">🔮</div>
         <div class="card-title">趋势判断</div>
-        <div class="card-desc">开源模型快速追赶闭源。<br>本地部署成本持续降低。<br>SKILLS是下一个主战场。<br>中文模型生态正在崛起。</div>
+        <div class="card-desc">“更强模型 + 更低价格”会持续并行。<br>1M 上下文将成主流配置。<br>Agent 与工具编排能力成为核心差异化。<br>国产模型迭代速度明显加快。</div>
       </div>
     </div>
   </div>
@@ -993,7 +994,7 @@
     </div>
     <div class="site-license fade-in">
       演示内容材料仅限个人学习与非商业宣传使用<br>
-      如需将本项目或其衍生版本用于商业用途，请先联系项目作者并获得书面授权<br>
+      如需将本项目或其衍生版本用于商业用途，请先联系作者并获得书面授权<br>
       Email：mk19990202@163.com
     </div>
   </div>
