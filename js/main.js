@@ -1,107 +1,264 @@
-﻿// ===== Sections & Nav Dots =====
-const sections = document.querySelectorAll('.section');
-const navDotsContainer = document.getElementById('navDots');
-const progressBar = document.getElementById('progressBar');
+// ===== Lucide Icon Init =====
+if (typeof lucide !== 'undefined' && lucide && typeof lucide.createIcons === 'function') {
+  lucide.createIcons();
+}
+
+// ===== Sections, Headings & Navigation =====
+const sections = Array.from(document.querySelectorAll('.section'));
 const coverDate = document.getElementById('coverDate');
+const topNav = document.getElementById('topNav');
+const topNavLinks = Array.from(document.querySelectorAll('.top-nav-link[data-target]'));
+const topNavCta = document.querySelector('.top-nav-cta[data-target]');
+const brandChip = document.querySelector('.brand-chip[data-target]');
+var activeSectionIndex = 0;
 
 if (coverDate) {
-  const now = new Date();
-  coverDate.textContent = `${now.getFullYear()} 年 ${now.getMonth() + 1} 月`;
+  var now = new Date();
+  coverDate.textContent = now.getFullYear() + ' 年 ' + (now.getMonth() + 1) + ' 月';
 }
 
-sections.forEach((s, i) => {
-  const dot = document.createElement('button');
-  dot.className = 'nav-dot';
-  dot.title = s.id;
-  dot.addEventListener('click', () => s.scrollIntoView({ behavior: 'smooth' }));
-  navDotsContainer.appendChild(dot);
-});
-
-// ===== Scroll Observer for Active Dot & Progress =====
-function updateProgress() {
-  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-  progressBar.style.width = pct + '%';
+function scrollToSection(section) {
+  if (!section) return;
+  var navHeight = topNav ? topNav.offsetHeight : 0;
+  var top = section.getBoundingClientRect().top + window.pageYOffset - navHeight - 10;
+  window.scrollTo({ top: top, behavior: 'smooth' });
 }
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const idx = Array.from(sections).indexOf(e.target);
-      document.querySelectorAll('.nav-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+var headingConfig = {
+  's1-timeline': { kicker: 'Foundation Track', accent: '前世今生' },
+  's1-transformer': { kicker: 'Core Mechanism', accent: 'Transformer' },
+  's1-essence': { kicker: 'Model Basics', accent: '本质' },
+  's1-agent': { kicker: 'Agent System', accent: 'Agent（智能体）' },
+  's1-concepts': { kicker: 'Key Concepts', accent: '基础篇' },
+  's1-concepts2': { kicker: 'Key Concepts', accent: '进阶篇' },
+  's1-compare': { kicker: 'Model Landscape', accent: '中美大模型' },
+  's2-apps': { kicker: 'Application Map', accent: '能做什么' },
+  's2-office-ai': { kicker: 'Productivity Suite', accent: '办公软件' },
+  's3-resources': { kicker: 'Toolkit', accent: '工具篇' },
+  's3-resources2': { kicker: 'Developer Path', accent: '开发与学习' },
+  's3-security': { kicker: 'AI Security', accent: '暗面' },
+  's4-summary': { kicker: 'Takeaways', accent: '总结' }
+};
+
+function buildSplitTitle(titleEl, accentText) {
+  if (!titleEl || titleEl.dataset.splitApplied === '1') return;
+  var raw = titleEl.textContent.trim().replace(/\s+/g, ' ');
+  if (!raw) return;
+
+  var accent = accentText || '';
+  var main = raw;
+
+  if (!accent) {
+    var splitByColon = raw.split(/[：:]/);
+    if (splitByColon.length > 1) {
+      main = splitByColon[0].trim();
+      accent = splitByColon.slice(1).join('：').trim();
+    }
+  }
+
+  if (accent && raw.indexOf(accent) >= 0) {
+    main = raw.replace(accent, '').replace(/[：:，,。！？?!、\s]+$/, '').trim();
+  }
+
+  if (!accent || accent === main) accent = '';
+  if (!main) main = raw;
+
+  titleEl.innerHTML = '';
+  var mainSpan = document.createElement('span');
+  mainSpan.className = 'title-main';
+  mainSpan.textContent = main;
+  var accentSpan = document.createElement('span');
+  accentSpan.className = 'title-accent';
+  accentSpan.textContent = accent;
+
+  titleEl.appendChild(mainSpan);
+  if (accentSpan.textContent) {
+    titleEl.appendChild(accentSpan);
+  }
+  titleEl.dataset.splitApplied = '1';
+}
+
+function ensureCoverTitleSplit() {
+  var coverTitle = document.querySelector('.cover-title');
+  if (!coverTitle) return;
+  if (!coverTitle.querySelector('.cover-title-main')) {
+    var text = coverTitle.textContent.trim();
+    coverTitle.innerHTML = '<span class="cover-title-main">' + text + '</span><span class="cover-title-accent">LLM 实战图谱</span>';
+  }
+}
+
+function enhanceSectionHeadings() {
+  sections.forEach(function(section) {
+    var title = section.querySelector('.section-title');
+    if (!title) return;
+
+    var cfg = headingConfig[section.id] || {};
+    buildSplitTitle(title, cfg.accent || '');
+
+    if (cfg.kicker && !section.querySelector('.section-kicker')) {
+      var kicker = document.createElement('div');
+      kicker.className = 'section-kicker fade-in';
+      kicker.textContent = cfg.kicker;
+      title.parentNode.insertBefore(kicker, title);
     }
   });
-}, { threshold: 0.4 });
-sections.forEach(s => observer.observe(s));
-window.addEventListener('scroll', updateProgress, { passive: true });
+}
+
+ensureCoverTitleSplit();
+enhanceSectionHeadings();
+
+topNavLinks.forEach(function(link) {
+  link.addEventListener('click', function() {
+    var targetId = link.getAttribute('data-target');
+    var target = document.getElementById(targetId);
+    scrollToSection(target);
+  });
+});
+
+if (brandChip) {
+  brandChip.addEventListener('click', function() {
+    var targetId = brandChip.getAttribute('data-target');
+    var target = document.getElementById(targetId);
+    scrollToSection(target);
+  });
+}
+
+if (topNavCta) {
+  topNavCta.addEventListener('click', function() {
+    var targetId = topNavCta.getAttribute('data-target');
+    var target = document.getElementById(targetId);
+    scrollToSection(target);
+  });
+}
+
+document.querySelectorAll('.hero-btn[href^="#"]').forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    var id = link.getAttribute('href').slice(1);
+    var target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    scrollToSection(target);
+  });
+});
+
+function resolveNavTarget(sectionId) {
+  if (!sectionId) return sectionId;
+  if (sectionId === 'cover') return 'cover';
+
+  if (sectionId.indexOf('s1-') === 0) {
+    if (sectionId === 's1-transformer') return 's1-transformer';
+    if (sectionId === 's1-agent') return 's1-agent';
+    return 's1-timeline';
+  }
+
+  if (sectionId.indexOf('s2-') === 0) return 's1-agent';
+  if (sectionId.indexOf('s3-') === 0) return 's3-resources';
+  if (sectionId.indexOf('s4-') === 0 || sectionId.indexOf('s5-') === 0) return 's3-resources';
+
+  return sectionId;
+}
+
+function syncTopNavActive(sectionId) {
+  var mappedId = resolveNavTarget(sectionId);
+  topNavLinks.forEach(function(link) {
+    link.classList.toggle('active', link.getAttribute('data-target') === mappedId);
+  });
+}
+
+syncTopNavActive('cover');
+
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (!e.isIntersecting) return;
+    var idx = sections.indexOf(e.target);
+    if (idx < 0) return;
+    activeSectionIndex = idx;
+    syncTopNavActive(e.target.id);
+  });
+}, { threshold: 0.42 });
+
+sections.forEach(function(s) { observer.observe(s); });
 
 // ===== Fade-in on Scroll =====
-const fadeObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+var fadeObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
 }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.fade-in, .fade-in-left').forEach(el => fadeObserver.observe(el));
+document.querySelectorAll('.fade-in, .fade-in-left').forEach(function(el) {
+  fadeObserver.observe(el);
+});
 
 // ===== Keyboard Navigation =====
-document.addEventListener('keydown', (e) => {
-  const dots = document.querySelectorAll('.nav-dot');
-  let cur = Array.from(dots).findIndex(d => d.classList.contains('active'));
-  if (cur === -1) cur = 0;
+document.addEventListener('keydown', function(e) {
+  var cur = activeSectionIndex;
   if ((e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown') && cur < sections.length - 1) {
-    e.preventDefault(); sections[cur + 1].scrollIntoView({ behavior: 'smooth' });
+    e.preventDefault();
+    scrollToSection(sections[cur + 1]);
   } else if ((e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') && cur > 0) {
-    e.preventDefault(); sections[cur - 1].scrollIntoView({ behavior: 'smooth' });
+    e.preventDefault();
+    scrollToSection(sections[cur - 1]);
   }
 });
 
-// ===== 鼠标跟随光效 (Card Spotlight) =====
-document.querySelectorAll('.card').forEach(card => {
-  const glow = document.createElement('div');
-  glow.className = 'card-glow';
-  card.prepend(glow);
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    glow.style.background = `radial-gradient(350px circle at ${x}px ${y}px, rgba(99,102,241,0.12), transparent 60%)`;
-  });
+// ===== Card fade-in patches =====
+document.querySelectorAll('.cards-grid .card').forEach(function(el) {
+  if (!el.classList.contains('fade-in')) {
+    el.classList.add('fade-in');
+    fadeObserver.observe(el);
+  }
 });
 
-// ===== 卡片 fade-in 也加 visible (补丁) =====
-document.querySelectorAll('.cards-grid .card').forEach(el => {
-  if (!el.classList.contains('fade-in')) { el.classList.add('fade-in'); fadeObserver.observe(el); }
-});
-
-// ===== Starfield Canvas =====
+// ===== Aurora Ambient Particles =====
 (function() {
-  const canvas = document.getElementById('starfield');
+  var canvas = document.getElementById('starfield');
   if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let w, h, stars = [];
-  function resize() { w = canvas.width = canvas.offsetWidth; h = canvas.height = canvas.offsetHeight; }
+  var ctx = canvas.getContext('2d');
+  var w, h, particles = [];
+
+  function resize() {
+    w = canvas.width = canvas.offsetWidth;
+    h = canvas.height = canvas.offsetHeight;
+  }
   function init() {
-    resize(); stars = [];
-    for (let i = 0; i < 200; i++) {
-      stars.push({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 1.5 + 0.3, speed: Math.random() * 0.3 + 0.05, alpha: Math.random() * 0.8 + 0.2 });
+    resize();
+    particles = [];
+    for (var i = 0; i < 56; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.4 + 0.4,
+        speed: Math.random() * 0.12 + 0.03,
+        alpha: Math.random() * 0.2 + 0.06,
+        hue: Math.random() > 0.64 ? '117,49,255' : (Math.random() > 0.45 ? '0,163,173' : '93,216,226'),
+        phase: Math.random() * Math.PI * 2
+      });
     }
   }
   function draw() {
     ctx.clearRect(0, 0, w, h);
-    stars.forEach(s => {
-      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(99,102,241,${s.alpha})`; ctx.fill();
-      s.y -= s.speed; if (s.y < -2) { s.y = h + 2; s.x = Math.random() * w; }
-      s.alpha += (Math.random() - 0.5) * 0.02;
-      s.alpha = Math.max(0.1, Math.min(0.9, s.alpha));
+    particles.forEach(function(p) {
+      p.phase += 0.008;
+      var a = p.alpha * (0.6 + 0.4 * Math.sin(p.phase));
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(' + p.hue + ',' + a + ')';
+      ctx.fill();
+      p.x += Math.sin(p.phase) * 0.18;
+      p.y -= p.speed;
+      if (p.x > w + 6) p.x = -6;
+      if (p.x < -6) p.x = w + 6;
+      if (p.y < -6) { p.y = h + 6; p.x = Math.random() * w; }
     });
     requestAnimationFrame(draw);
   }
-  init(); draw();
+  init();
+  draw();
   window.addEventListener('resize', resize);
 })();
 
 // ===== Paper Modal =====
-const papers = {
+var papers = {
   attention: {
     title: 'Attention Is All You Need (2017)',
     desc: 'Transformer架构的开山之作。Vaswani等人提出了完全基于注意力机制的序列模型，抛弃了RNN和CNN，奠定了现代大模型的基础。',
@@ -159,30 +316,39 @@ const papers = {
 };
 
 function openPaper(key) {
-  const p = papers[key]; if (!p) return;
+  var p = papers[key];
+  if (!p) return;
   document.getElementById('paperTitle').textContent = p.title;
   document.getElementById('paperDesc').textContent = p.desc;
-  const linksDiv = document.getElementById('paperLinks');
-  linksDiv.innerHTML = `<a class="paper-btn" href="${p.arxiv}" target="_blank" rel="noopener"> arXiv 页面</a><a class="paper-btn" href="${p.pdf}" target="_blank" rel="noopener"> 下载 PDF</a>`;
+  var linksDiv = document.getElementById('paperLinks');
+  linksDiv.innerHTML = '<a class="paper-btn" href="' + p.arxiv + '" target="_blank" rel="noopener">arXiv 页面</a> <a class="paper-btn secondary" href="' + p.pdf + '" target="_blank" rel="noopener">下载 PDF</a>';
   document.getElementById('paperModal').classList.add('active');
 }
-function closePaper() { document.getElementById('paperModal').classList.remove('active'); }
-document.getElementById('paperModal').addEventListener('click', function(e) { if (e.target === this) closePaper(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePaper(); });
+
+function closePaper() {
+  document.getElementById('paperModal').classList.remove('active');
+}
+
+document.getElementById('paperModal').addEventListener('click', function(e) {
+  if (e.target === this) closePaper();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closePaper();
+});
 
 // ===== Agent Code Demo Animation =====
 (function() {
-  const codeDemo = document.getElementById('agentCodeDemo');
-  const outputDemo = document.getElementById('agentOutputDemo');
+  var codeDemo = document.getElementById('agentCodeDemo');
+  var outputDemo = document.getElementById('agentOutputDemo');
   if (!codeDemo) return;
-  let animated = false;
+  var animated = false;
 
   function parseSegments(html) {
-    const segs = [];
-    let i = 0;
+    var segs = [];
+    var i = 0;
     while (i < html.length) {
       if (html[i] === '<') {
-        const end = html.indexOf('>', i);
+        var end = html.indexOf('>', i);
         segs.push({ type: 'tag', value: html.substring(i, end + 1) });
         i = end + 1;
       } else {
@@ -194,9 +360,10 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePaper
   }
 
   function buildHTML(segments, charCount) {
-    let html = '', chars = 0, done = false;
-    for (const seg of segments) {
+    var html = '', chars = 0, done = false;
+    for (var i = 0; i < segments.length; i++) {
       if (done) break;
+      var seg = segments[i];
       if (seg.type === 'tag') {
         html += seg.value;
       } else {
@@ -209,12 +376,15 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePaper
   }
 
   function typewriteLines(lines, onDone) {
-    const CHAR_DELAY = 45;
-    const LINE_PAUSE = 350;
-    let lineIdx = 0;
-    const originals = Array.from(lines).map(l => l.innerHTML);
-    lines.forEach(l => { l.innerHTML = ''; });
-    const caret = document.createElement('span');
+    var CHAR_DELAY = 45;
+    var LINE_PAUSE = 350;
+    var lineIdx = 0;
+    var originals = [];
+    for (var i = 0; i < lines.length; i++) {
+      originals.push(lines[i].innerHTML);
+      lines[i].innerHTML = '';
+    }
+    var caret = document.createElement('span');
     caret.className = 'typing-caret';
 
     function nextLine() {
@@ -223,8 +393,8 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePaper
         if (onDone) onDone();
         return;
       }
-      const line = lines[lineIdx];
-      const original = originals[lineIdx];
+      var line = lines[lineIdx];
+      var original = originals[lineIdx];
       line.classList.add('show');
 
       if (!original || original.trim() === '') {
@@ -234,9 +404,12 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePaper
         return;
       }
 
-      const segments = parseSegments(original);
-      const totalChars = segments.filter(s => s.type === 'char').length;
-      let charIdx = 0;
+      var segments = parseSegments(original);
+      var totalChars = 0;
+      for (var i = 0; i < segments.length; i++) {
+        if (segments[i].type === 'char') totalChars++;
+      }
+      var charIdx = 0;
 
       function typeChar() {
         charIdx++;
@@ -255,16 +428,16 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePaper
     nextLine();
   }
 
-  const trigger = document.getElementById('codeAnimTrigger');
-  const demoObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
+  var trigger = document.getElementById('codeAnimTrigger');
+  var demoObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
       if (e.isIntersecting && !animated) {
         animated = true;
-        const codeLines = codeDemo.querySelectorAll('.line');
-        typewriteLines(codeLines, () => {
-          const outLines = outputDemo.querySelectorAll('.out-line');
-          outLines.forEach((line, i) => {
-            setTimeout(() => line.classList.add('show'), 600 + i * 800);
+        var codeLines = codeDemo.querySelectorAll('.line');
+        typewriteLines(codeLines, function() {
+          var outLines = outputDemo.querySelectorAll('.out-line');
+          outLines.forEach(function(line, i) {
+            setTimeout(function() { line.classList.add('show'); }, 600 + i * 800);
           });
         });
       }

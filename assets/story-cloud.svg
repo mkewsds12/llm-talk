@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="cloud" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff7e8" stop-opacity="0.95"/>
+      <stop offset="0.44" stop-color="#ff3d2e" stop-opacity="0.86"/>
+      <stop offset="1" stop-color="#7ee7ff" stop-opacity="0.68"/>
+    </linearGradient>
+    <filter id="blur" x="-12%" y="-24%" width="124%" height="148%">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+  </defs>
+  <path d="M24 220 C126 118 254 202 344 102 C440 -4 596 74 642 154 C754 74 874 112 916 204 C1026 166 1134 210 1180 300 L28 318 Z" fill="url(#cloud)" filter="url(#blur)" opacity="0.9"/>
+  <path d="M48 226 C150 138 266 212 354 124 C448 30 576 92 638 166 C746 102 856 130 902 214 C1018 184 1116 224 1160 294" fill="none" stroke="#080b20" stroke-opacity="0.18" stroke-width="5"/>
+</svg>
